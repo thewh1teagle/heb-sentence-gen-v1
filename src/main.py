@@ -20,23 +20,46 @@ def get_base_rules(count: int) -> str:
     return f"""
 Generate exactly {count} Hebrew sentences. Follow these rules with no exceptions:
 
-1. Sentence length: Each sentence must contain between 6 and 20 words (inclusive).
-2. Alphabet restriction: Use only standard Hebrew letters (Unicode range U+05D0–U+05EA). No niqqud, vowels, diacritics, cantillation marks, or non-Hebrew letters.
-3. Punctuation restriction: Allowed punctuation marks are limited to: period (.), comma (,), question mark (?), exclamation mark (!). Do not use any other punctuation symbols.
+1. Sentence length distribution:
+   - All sentences must contain between 6 and 20 words (inclusive).
+   - Ensure variety in length:
+     * About 30% short (6–9 words).
+     * About 40% medium (10–14 words).
+     * About 30% long (15–20 words).
+
+2. Alphabet restriction:
+   - Use only standard Hebrew letters (Unicode range U+05D0–U+05EA).
+   - No niqqud, vowels, diacritics, cantillation marks, or non-Hebrew letters.
+
+3. Punctuation restriction:
+   - Allowed punctuation marks: period (.), comma (,), question mark (?), exclamation mark (!).
+   - Do not use any other punctuation symbols.
+
 4. Prohibited content:
    - Do not include numbers (in any script).
    - Do not include emojis or special characters.
    - Do not include English or non-Hebrew words.
-5. Style requirements:
-   - Sentences should be natural, modern, and everyday Hebrew.
-   - Include a mix of sentence types: statements, questions, and exclamations.
-   - Keep vocabulary simple, like spoken conversation, not poetic or archaic.
+
+5. Style and diversity requirements:
+   - Sentences must sound natural, modern, and fluent Hebrew.
+   - Ensure wide variety in tone, phrasing, and context.
+   - Distribute sentences approximately as follows:
+     * 40% everyday casual / spoken Hebrew (colloquial, natural conversations, light slang).
+     * 30% formal / professional Hebrew (workplace, instructions, announcements).
+     * 30% expressive Hebrew (emotions, excitement, frustration, exclamations, rhetorical questions).
+   - Cover a variety of situations: home, family, school, work, technology, nature, culture, shopping, travel, social life.
+   - Vary emotional tone: positive, negative, neutral, surprised, enthusiastic, doubtful.
+   - Avoid repeating sentence structures.
+
 6. Formatting output:
    - Write exactly one sentence per line.
    - Do not number the sentences.
    - Do not include quotes, explanations, or translations.
    - Output only the Hebrew sentences.
 """.strip()
+
+
+
 
 REQUEST_HINT = lambda count: f"Make sure there are exactly {count} lines in the output."
 
