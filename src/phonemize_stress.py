@@ -10,9 +10,15 @@ from tqdm import tqdm
 model = Phonikud('phonikud-1.0.int8.onnx')
 
 
-def phonemize_stress(text: str) -> str:
-    text = model.add_diacritics(text)
+def remove_nikud(text):
     text = re.sub(r'[\u0590-\u059F\u05a0-\u05aa\u05ac-\u05c7\|]', '', text)
+    return text
+
+def phonemize_stress(text: str) -> str:
+    text = remove_nikud(text)
+    text = re.sub('\u05ab', '', text)
+    text = model.add_diacritics(text)
+    text = remove_nikud(text)
     return text
 
 
